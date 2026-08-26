@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nocturne — Windows performance monitor</title>
+<meta name="description" content="A lightweight open-source Windows performance monitor that tells you which program is using your hardware, not just how much of it is busy. No injection, no drivers, no telemetry.">
+
+<meta property="og:title" content="Nocturne — Windows performance monitor">
+<meta property="og:description" content="Tells you which program is using your hardware, not just how much of it is busy. One file, under a megabyte, no injection.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://getnocturne.site/">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Nocturne home">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><use href="assets/favicon.svg#crescent"></use></svg>
+      <span class="brand-name">Nocturne</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#what">What it does</a>
+      <a href="#attribution">Attribution</a>
+      <a href="#limits">What it won't do</a>
+      <a href="#sources">Data sources</a>
+      <a href="#verify">Verify</a>
+    </nav>
+    <a class="btn btn-sm" href="https://github.com/RoyalKLP/Nocturne/releases/latest">Download</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ─────────────────────────────────────────── hero ── -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Windows · open source · MIT</p>
+      <h1 class="reveal">
+        <span class="wordmark">Nocturne</span>
+        <span class="h1-sub">knows <em>which</em> program is<br>using your machine.</span>
+      </h1>
+      <p class="lede reveal">
+        Every monitor can tell you the GPU is at 92%. Nocturne tells you your game
+        has 61% of it and the browser behind it took the rest — because Windows
+        reports usage per process, and almost nothing bothers to read it.
+      </p>
+
+      <div class="cta-row reveal">
+        <a class="btn btn-primary" href="https://github.com/RoyalKLP/Nocturne/releases/latest">
+          Download for Windows
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/RoyalKLP/Nocturne">View source</a>
+      </div>
+
+      <ul class="facts reveal">
+        <li><span class="num" data-count="1.0">1.0</span><span class="unit">MB</span><span class="cap">single file</span></li>
+        <li><span class="num" data-count="0">0</span><span class="cap">installers</span></li>
+        <li><span class="num" data-count="0">0</span><span class="cap">network calls</span></li>
+        <li><span class="num">MIT</span><span class="cap">licensed</span></li>
+      </ul>
+    </div>
+
+    <!--
+      A working miniature of the real interface rather than a screenshot, so the
+      numbers move and nobody's actual process list ends up on a public page.
+    -->
+    <div class="hero-demo reveal" aria-hidden="true">
+      <div class="app">
+        <div class="app-bar">
+          <span class="dot"></span>
+          <span class="app-title">Nocturne</span>
+          <span class="app-meta" id="demoMeta">DESK-FORGE · 12 logical processors</span>
+          <span class="app-controls"><i></i><i></i><i></i></span>
+        </div>
+
+        <div class="app-body">
+          <div class="insight">
+            <span class="insight-dot"></span>
+            <p id="demoInsight">Nothing is holding <b>Helldivers2</b> back. Background apps are taking 19% of the GPU.</p>
+          </div>
+
+          <div class="rows" id="demoRows"></div>
+
+          <div class="proc">
+            <div class="proc-head"><span>Top processes</span><span id="demoCount">271 running</span></div>
+            <div id="demoProc"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay-demo" id="overlayDemo">
+        <span class="ov-v" data-ov="gpu">64%</span><span class="ov-l">GPU</span>
+        <span class="ov-sep">·</span>
+        <span class="ov-v" data-ov="cpu">31%</span><span class="ov-l">CPU</span>
+        <span class="ov-sep">·</span>
+        <span class="ov-v" data-ov="ram">48%</span><span class="ov-l">RAM</span>
+      </div>
+      <p class="overlay-cap">The overlay, actual size — click-through, sits above fullscreen games.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ────────────────────────────────────────── what ── -->
+<section class="band" id="what">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <h2>What you get</h2>
+      <p>Six live metrics, a ranked process list, and an overlay that stays out of the way.</p>
+    </header>
+
+    <div class="cards">
+      <article class="card reveal">
+        <h3><span class="swatch" style="--c:var(--cpu)"></span>Live metrics</h3>
+        <p>Processor, graphics, memory, disk and network, sampled every second with
+           hand-drawn history graphs. Percentages are pinned to a real 0–100 scale
+           rather than auto-fitted, so an idle machine looks idle instead of frantic.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3><span class="swatch" style="--c:var(--gpu)"></span>Per-process GPU</h3>
+        <p>Windows publishes GPU utilization for every process. Nocturne keeps that
+           attribution and shows you which programs are actually holding the card —
+           the number Task Manager buries and most overlays discard entirely.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3><span class="swatch" style="--c:var(--net)"></span>Game overlay</h3>
+        <p>One dim line of text above everything, including fullscreen-borderless
+           games. Clicks pass straight through it and it never takes focus. Hold a
+           hotkey and drag it anywhere; it remembers where, per display.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3><span class="swatch" style="--c:var(--mem)"></span>Plain-language answers</h3>
+        <p>Rather than leaving you to interpret six graphs, Nocturne names the
+           constraint: CPU-bound, GPU-bound, disk saturated, or memory nearly full —
+           and which background programs are competing for it.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3><span class="swatch" style="--c:var(--disk)"></span>Lives in the tray</h3>
+        <p>Closing the window doesn't quit; it keeps sampling from the notification
+           area. Window position, overlay placement and preferences survive a restart,
+           and are written a couple of seconds after they change — not only on exit.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3><span class="swatch" style="--c:var(--brass)"></span>One file</h3>
+        <p>About a megabyte. No installer, no setup wizard, nothing written to Program
+           Files or the registry beyond one optional startup entry you control.
+           Uninstalling means deleting the file.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────── attribution ── -->
+<section class="band alt" id="attribution">
+  <div class="wrap split">
+    <div class="split-copy reveal">
+      <p class="eyebrow">The difference</p>
+      <h2>A number isn't an answer.</h2>
+      <p>Knowing the GPU sits at 92% doesn't tell you what to do. Knowing that a
+         browser you forgot about is holding 24% of it does.</p>
+      <p>Windows exposes one performance counter instance per GPU engine <em>per
+         process</em>. Nocturne reads all of them, groups them by engine type, and
+         joins the result with per-process CPU and the window you're actually
+         looking at. That's the whole trick — the data was always there.</p>
+      <p class="fine">Processes you can't act on — the desktop compositor, the shell,
+         Nocturne itself — are filtered out. Advice you can't act on is worse than
+         silence.</p>
+    </div>
+
+    <figure class="split-fig reveal">
+      <div class="attrib">
+        <p class="attrib-line">Background apps are taking <b>24%</b> of the GPU.</p>
+        <div class="attrib-rows">
+          <div><span>chrome</span><i class="bar" style="--w:64%;--c:var(--gpu)"></i><span class="v">14%</span></div>
+          <div><span>Discord</span><i class="bar" style="--w:32%;--c:var(--gpu)"></i><span class="v">7%</span></div>
+          <div><span>OBS</span><i class="bar" style="--w:14%;--c:var(--gpu)"></i><span class="v">3%</span></div>
+        </div>
+      </div>
+      <figcaption>Attribution, not just totals.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────── limits ── -->
+<section class="band" id="limits">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Architecture, not marketing</p>
+      <h2>What Nocturne will never do</h2>
+      <p>These aren't features waiting to be built. They're decisions, and they're
+         why the app can be small, safe beside anti-cheat, and auditable in an afternoon.</p>
+    </header>
+
+    <ul class="limits">
+      <li class="reveal">
+        <h3>No process injection</h3>
+        <p>Nothing is loaded into another program's memory. The overlay is an ordinary
+           always-on-top window, not something drawn inside your game. This is the single
+           behaviour most likely to attract anti-cheat and antivirus attention, and it is
+           the reason frame-rate measurement is still absent rather than shipped the easy way.</p>
+      </li>
+      <li class="reveal">
+        <h3>No kernel driver</h3>
+        <p>Every metric comes from a documented user-mode Windows API. That's also why CPU
+           temperature and fan speed aren't here — reading them needs a driver, and a
+           signed driver is a liability that a performance monitor shouldn't be asking you
+           to accept.</p>
+      </li>
+      <li class="reveal">
+        <h3>No keyboard or mouse hooks</h3>
+        <p>Hotkeys use <code>RegisterHotKey</code>, which asks Windows to report a handful of
+           specific chords and nothing else. A low-level hook would observe every keystroke
+           on the machine. Dragging the overlay reads the cursor only while a drag is
+           actually happening.</p>
+      </li>
+      <li class="reveal">
+        <h3>No network calls</h3>
+        <p>No telemetry, no update checks, no analytics. There's no code in the repository
+           that opens a socket. Even Authenticode signature checks run with cache-only
+           retrieval so that inspecting a file can't quietly cause an outbound request.</p>
+      </li>
+      <li class="reveal">
+        <h3>No elevation</h3>
+        <p>Runs as a normal user. It never asks for administrator, and the one optional
+           setting that touches the registry — start with Windows — writes a single
+           per-user value you can remove from Task Manager.</p>
+      </li>
+    </ul>
+
+    <p class="audit reveal">
+      Every Windows API the app touches lives in one file, so the complete list can be
+      read in a sitting:
+      <a href="https://github.com/RoyalKLP/Nocturne/blob/main/Nocturne.Core/Native/NativeMethods.cs"><code>Nocturne.Core/Native/NativeMethods.cs</code></a>
+    </p>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────── sources ── -->
+<section class="band alt" id="sources">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <h2>Where every number comes from</h2>
+      <p>No vendor SDKs, no proprietary blobs. If you want to check a figure, this is what to check it against.</p>
+    </header>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Metric</th><th>Source</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>CPU</td><td><code>GetSystemTimes</code></td><td>Idle, kernel and user tick deltas. Kernel time includes idle — a detail that trips up most implementations.</td></tr>
+          <tr><td>Memory</td><td><code>GlobalMemoryStatusEx</code></td><td>Computed from byte totals rather than the rounded percentage, so the graph moves smoothly.</td></tr>
+          <tr><td>GPU</td><td><code>\GPU Engine(*)\Utilization Percentage</code></td><td>Works on AMD, Intel and NVIDIA alike. Summed per engine type; the busiest type is reported, matching Task Manager.</td></tr>
+          <tr><td>Disk</td><td><code>\PhysicalDisk(_Total)\Disk Bytes/sec</code></td><td>Read through PDH directly rather than the managed wrapper, which is slow to initialise.</td></tr>
+          <tr><td>Network</td><td><code>System.Net.NetworkInformation</code></td><td>Byte deltas across active adapters, divided by measured elapsed time rather than the nominal interval.</td></tr>
+          <tr><td>Processes</td><td><code>NtQuerySystemInformation</code></td><td>One call returns every process. The usual per-process approach is denied for protected processes without elevation and silently hides about half of them.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────── verify ── -->
+<section class="band" id="verify">
+  <div class="wrap split">
+    <div class="split-copy reveal">
+      <p class="eyebrow">Provenance</p>
+      <h2>Check the bytes yourself.</h2>
+      <p>Releases are built by GitHub Actions from a tagged commit — never uploaded from
+         a developer's machine. Each one publishes a SHA-256 next to the download and
+         names the exact commit it came from.</p>
+      <p>So you don't have to take anyone's word for it. Read the source, read the build
+         log, hash the file you downloaded, and confirm they agree.</p>
+      <p class="fine">Not yet code-signed, so Windows SmartScreen will warn about an
+         unrecognised publisher. That happens to every new application until it builds
+         reputation, and it's a fair thing to be cautious about — which is exactly why
+         the checksum is there.</p>
+    </div>
+
+    <div class="split-fig reveal">
+      <div class="term">
+        <div class="term-bar"><i></i><i></i><i></i><span>PowerShell</span></div>
+<pre><code><span class="p">PS&gt;</span> Get-FileHash Nocturne.exe -Algorithm SHA256
+
+<span class="d">Algorithm  Hash</span>
+<span class="d">---------  ----</span>
+SHA256     <span class="h" id="hashDemo">E3CC89621893167E809E5B38CE759B79…</span>
+</code></pre>
+      </div>
+      <p class="fig-cap">Compare against the hash published with the release.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────── install ── -->
+<section class="band alt" id="install">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <h2>Getting started</h2>
+    </header>
+
+    <ol class="steps">
+      <li class="reveal">
+        <h3>Install the runtime</h3>
+        <p>Nocturne needs the <a href="https://dotnet.microsoft.com/download/dotnet/10.0">.NET&nbsp;10 Desktop Runtime</a>,
+           a one-time install from Microsoft. Without it Windows shows a dialog with a
+           download link instead of starting the app — that's expected, not a broken download.</p>
+      </li>
+      <li class="reveal">
+        <h3>Download and run</h3>
+        <p>One <code>Nocturne.exe</code>. Put it anywhere — Desktop, a tools folder, a USB stick.
+           There's nothing to install and nothing to configure before it works.</p>
+      </li>
+      <li class="reveal">
+        <h3>Get past SmartScreen</h3>
+        <p>Until the project is code-signed you'll see an unrecognised-publisher warning.
+           Choose <em>More info → Run anyway</em>, ideally after checking the hash above.</p>
+      </li>
+      <li class="reveal">
+        <h3>Find it in the tray</h3>
+        <p>Windows 11 hides new tray icons behind the <code>^</code> chevron. Drag the crescent
+           onto the taskbar to keep it in view. Closing the window keeps it running there.</p>
+      </li>
+    </ol>
+
+    <div class="keys reveal">
+      <h3>Overlay hotkeys</h3>
+      <dl>
+        <div><dt><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>N</kbd></dt><dd>Show or hide the overlay</dd></div>
+        <div><dt><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Space</kbd></dt><dd>Peek — brighten for two seconds</dd></div>
+        <div><dt><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>G</kbd></dt><dd>Hold and move the mouse to reposition it</dd></div>
+      </dl>
+      <p class="fine">Requires Windows 10 version 1607 or later, 64-bit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────────────────── down ── -->
+<section class="closer" id="download">
+  <div class="wrap closer-inner reveal">
+    <h2>Under a megabyte. Nothing running behind your back.</h2>
+    <div class="cta-row">
+      <a class="btn btn-primary btn-lg" href="https://github.com/RoyalKLP/Nocturne/releases/latest">Download Nocturne</a>
+      <a class="btn btn-ghost btn-lg" href="https://github.com/RoyalKLP/Nocturne">Read the source</a>
+    </div>
+    <p class="fine">Free and open source under the MIT licence.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><use href="assets/favicon.svg#crescent"></use></svg>
+      <div>
+        <p class="foot-name">Nocturne</p>
+        <p class="foot-fine">No telemetry. No accounts. Nothing phones home.</p>
+      </div>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="https://github.com/RoyalKLP/Nocturne">GitHub</a>
+      <a href="https://github.com/RoyalKLP/Nocturne/releases">Releases</a>
+      <a href="https://github.com/RoyalKLP/Nocturne/blob/main/LICENSE">Licence</a>
+      <a href="https://github.com/RoyalKLP/Nocturne/issues">Report an issue</a>
+    </nav>
+  </div>
+  <!--
+    SignPath Foundation requires the download page to state that the project uses
+    their service. Enable this ONLY once the application has been accepted -- until
+    then it would be a false claim.
+
+  <p class="signpath">Free code signing provided by <a href="https://signpath.org">SignPath.io</a>,
+     certificate by <a href="https://signpath.org">SignPath Foundation</a>.</p>
+  -->
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

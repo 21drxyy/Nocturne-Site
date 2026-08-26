@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <!--
+      The crescent is a disc with a second disc subtracted. Done with a mask rather
+      than an even-odd path so the shape stays correct at any scale, and so the same
+      symbol can be referenced by <use> from the page.
+    -->
+    <mask id="bite">
+      <rect width="32" height="32" fill="#000"/>
+      <circle cx="16" cy="16" r="14.1" fill="#fff"/>
+      <circle cx="23.0" cy="14.4" r="12.8" fill="#000"/>
+    </mask>
+    <g id="crescent">
+      <rect width="32" height="32" fill="#E8B75C" mask="url(#bite)"/>
+    </g>
+  </defs>
+  <use href="#crescent"/>
+</svg>

@@ -1,0 +1,49 @@
+# Netlify configuration for getnocturne.site
+#
+# There is no build step. The site is hand-written HTML, CSS and one JavaScript
+# file, so Netlify serves the repository root as-is.
+
+[build]
+  publish = "."
+  command = ""
+
+# ── security headers ────────────────────────────────────────────────────────
+# A site whose entire pitch is "this software does not do anything behind your
+# back" should not itself be loading third-party scripts. The policy below is
+# deliberately tight: the only external origin permitted is Google Fonts.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# ── convenience redirects ───────────────────────────────────────────────────
+# Short paths worth having in a README, a video description or a message.
+
+[[redirects]]
+  from = "/download"
+  to = "https://github.com/RoyalKLP/Nocturne/releases/latest"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/source"
+  to = "https://github.com/RoyalKLP/Nocturne"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/issues"
+  to = "https://github.com/RoyalKLP/Nocturne/issues"
+  status = 302
+  force = true
