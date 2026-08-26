@@ -49,6 +49,10 @@ For the custom domain, add `getnocturne.site` under **Custom domains** in the Pa
 
 **The numbers in the copy are real** and should be kept that way. File size, the metric sources, the hotkeys and the licence all describe the actual application. If the app changes, these change with it - a landing page that overstates its product is exactly the problem Nocturne exists to avoid.
 
+**Bump the asset version when you edit CSS or JS.** `index.html` links them as `styles.css?v=2` and `main.js?v=2`, and `_headers` caches `/assets/*` for a week. Without changing that number, returning visitors keep the old file for up to seven days and see a half-updated page. Increment it in the same commit as the change.
+
+**Test with the real headers before deploying.** A plain `python -m http.server` ignores `_headers`, so the Content-Security-Policy is never enforced and violations only appear once the site is live. Inline `style` attributes are the usual casualty: they fail silently, leaving elements uncoloured.
+
 **The Content-Security-Policy in `_headers` is tight on purpose.** Google Fonts is the only permitted external origin. Adding an analytics script, an embedded video or a web font from elsewhere means loosening it, which is worth thinking twice about for a project that advertises making no network calls.
 
 **The SignPath credit in the footer is commented out.** SignPath Foundation requires the download page to state that the project uses their service - but only once the application has been accepted. Enabling it before then would be a false claim. Uncomment it when the certificate is in place.
