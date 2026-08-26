@@ -1,0 +1,9 @@
+# Short paths worth having in a README, a video description or a message.
+# Same file format on Cloudflare Pages and Netlify.
+#
+#   source          destination                                              status
+
+/download           https://github.com/RoyalKLP/Nocturne/releases/latest      302
+/source             https://github.com/RoyalKLP/Nocturne                      302
+/issues             https://github.com/RoyalKLP/Nocturne/issues               302
+/verify             https://github.com/RoyalKLP/Nocturne/releases/latest      302

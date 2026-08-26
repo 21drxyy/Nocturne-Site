@@ -1,0 +1,24 @@
+# Response headers for Cloudflare Pages.
+#
+# This file format is shared by Cloudflare Pages and Netlify, so the site can move
+# between them without touching configuration.
+#
+# The Content-Security-Policy is deliberately strict. A page whose argument is that
+# the software does nothing behind your back should not itself be loading
+# third-party scripts, and the policy below makes that enforceable rather than a
+# promise. Google Fonts is the only external origin permitted; adding analytics, an
+# embedded video or a font from anywhere else means loosening this, which is worth
+# a second thought.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Assets are versioned by hand rather than by a build hash, so a week is a
+# reasonable compromise between cache hits and being able to ship a fix.
+/assets/*
+  Cache-Control: public, max-age=604800
