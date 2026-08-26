@@ -315,6 +315,16 @@ h1 { margin: 0 0 22px; font-weight: 400; line-height: 1.06; }
 .card p { margin: 0; font-size: 14px; color: var(--ink-muted); }
 .swatch { width: 8px; height: 8px; border-radius: 2px; background: var(--c); flex: none; }
 
+/* Per-metric colours live here rather than in a style attribute on the element.
+   The Content-Security-Policy forbids inline styles, so setting --c in the markup
+   is silently dropped and the swatch renders colourless. */
+.swatch-cpu   { --c: var(--cpu); }
+.swatch-gpu   { --c: var(--gpu); }
+.swatch-net   { --c: var(--net); }
+.swatch-mem   { --c: var(--mem); }
+.swatch-disk  { --c: var(--disk); }
+.swatch-brass { --c: var(--brass); }
+
 /* ------------------------------------------------- split -- */
 
 .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 60px; align-items: center; }
@@ -335,7 +345,12 @@ h1 { margin: 0 0 22px; font-weight: 400; line-height: 1.06; }
 .attrib-rows > div { display: grid; grid-template-columns: 84px 1fr 40px; align-items: center; gap: 12px; }
 .attrib-rows span { font-family: var(--mono); font-size: 12px; color: var(--ink-muted); }
 .attrib-rows .v { text-align: right; color: var(--ink); }
-.bar { display: block; height: 4px; border-radius: 2px; background: var(--hairline-2); position: relative; overflow: hidden; }
+.bar { display: block; height: 4px; border-radius: 2px; background: var(--hairline-2); position: relative; overflow: hidden; --c: var(--gpu); }
+
+/* Widths as classes for the same reason as the swatch colours above. */
+.bar-lg { --w: 64%; }
+.bar-md { --w: 32%; }
+.bar-sm { --w: 14%; }
 .bar::after {
   content: ""; position: absolute; inset: 0 auto 0 0; width: 0;
   background: var(--c); border-radius: 2px;

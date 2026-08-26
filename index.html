@@ -122,42 +122,42 @@
 
     <div class="cards">
       <article class="card reveal">
-        <h3><span class="swatch" style="--c:var(--cpu)"></span>Live metrics</h3>
+        <h3><span class="swatch swatch-cpu"></span>Live metrics</h3>
         <p>Processor, graphics, memory, disk and network, sampled every second with
            hand-drawn history graphs. Percentages are pinned to a real 0-100 scale
            rather than auto-fitted, so an idle machine looks idle instead of frantic.</p>
       </article>
 
       <article class="card reveal">
-        <h3><span class="swatch" style="--c:var(--gpu)"></span>Per-process GPU</h3>
+        <h3><span class="swatch swatch-gpu"></span>Per-process GPU</h3>
         <p>Windows publishes GPU utilization for every process. Nocturne keeps that
            attribution and shows you which programs are actually holding the card -
            the number Task Manager buries and most overlays discard entirely.</p>
       </article>
 
       <article class="card reveal">
-        <h3><span class="swatch" style="--c:var(--net)"></span>Game overlay</h3>
+        <h3><span class="swatch swatch-net"></span>Game overlay</h3>
         <p>One dim line of text above everything, including fullscreen-borderless
            games. Clicks pass straight through it and it never takes focus. Hold a
            hotkey and drag it anywhere; it remembers where, per display.</p>
       </article>
 
       <article class="card reveal">
-        <h3><span class="swatch" style="--c:var(--mem)"></span>Plain-language answers</h3>
+        <h3><span class="swatch swatch-mem"></span>Plain-language answers</h3>
         <p>Rather than leaving you to interpret six graphs, Nocturne names the
            constraint: CPU-bound, GPU-bound, disk saturated, or memory nearly full -
            and which background programs are competing for it.</p>
       </article>
 
       <article class="card reveal">
-        <h3><span class="swatch" style="--c:var(--disk)"></span>Lives in the tray</h3>
+        <h3><span class="swatch swatch-disk"></span>Lives in the tray</h3>
         <p>Closing the window doesn't quit; it keeps sampling from the notification
            area. Window position, overlay placement and preferences survive a restart,
            and are written a couple of seconds after they change - not only on exit.</p>
       </article>
 
       <article class="card reveal">
-        <h3><span class="swatch" style="--c:var(--brass)"></span>One file</h3>
+        <h3><span class="swatch swatch-brass"></span>One file</h3>
         <p>About a megabyte. No installer, no setup wizard, nothing written to Program
            Files or the registry beyond one optional startup entry you control.
            Uninstalling means deleting the file.</p>
@@ -187,9 +187,9 @@
       <div class="attrib">
         <p class="attrib-line">Background apps are taking <b>24%</b> of the GPU.</p>
         <div class="attrib-rows">
-          <div><span>chrome</span><i class="bar" style="--w:64%;--c:var(--gpu)"></i><span class="v">14%</span></div>
-          <div><span>Discord</span><i class="bar" style="--w:32%;--c:var(--gpu)"></i><span class="v">7%</span></div>
-          <div><span>OBS</span><i class="bar" style="--w:14%;--c:var(--gpu)"></i><span class="v">3%</span></div>
+          <div><span>chrome</span><i class="bar bar-lg"></i><span class="v">14%</span></div>
+          <div><span>Discord</span><i class="bar bar-md"></i><span class="v">7%</span></div>
+          <div><span>OBS</span><i class="bar bar-sm"></i><span class="v">3%</span></div>
         </div>
       </div>
       <figcaption>Attribution, not just totals.</figcaption>
