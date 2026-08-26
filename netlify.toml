@@ -7,7 +7,7 @@
   publish = "."
   command = ""
 
-# ── security headers ────────────────────────────────────────────────────────
+# -- security headers --------------------------------------------------------
 # A site whose entire pitch is "this software does not do anything behind your
 # back" should not itself be loading third-party scripts. The policy below is
 # deliberately tight: the only external origin permitted is Google Fonts.
@@ -27,7 +27,7 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
-# ── convenience redirects ───────────────────────────────────────────────────
+# -- convenience redirects ---------------------------------------------------
 # Short paths worth having in a README, a video description or a message.
 
 [[redirects]]

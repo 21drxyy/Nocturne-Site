@@ -1,4 +1,4 @@
-/* Nocturne — landing page behaviour.
+/* Nocturne - landing page behaviour.
    No dependencies, no build step. Everything degrades to a readable static page
    if this file never loads.                                                     */
 
@@ -7,7 +7,7 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── sticky nav ────────────────────────────────────────────────────────── */
+  /* -- sticky nav ---------------------------------------------------------- */
 
   const nav = document.getElementById('nav');
   if (nav) {
@@ -16,7 +16,7 @@
     addEventListener('scroll', onScroll, { passive: true });
   }
 
-  /* ── scroll reveals ────────────────────────────────────────────────────── */
+  /* -- scroll reveals ------------------------------------------------------ */
 
   const revealables = document.querySelectorAll('.reveal');
 
@@ -35,7 +35,7 @@
     revealables.forEach(el => io.observe(el));
   }
 
-  /* ── hero demo ─────────────────────────────────────────────────────────── */
+  /* -- hero demo ----------------------------------------------------------- */
   /* A miniature of the real application. Deliberately synthetic: a screenshot
      would publish whichever processes happened to be running on the author's
      machine, which is nobody's business.                                       */
@@ -80,7 +80,7 @@
       row.className = 'row';
       row.innerHTML =
         `<span class="row-label">${m.label}</span>` +
-        `<span class="row-value" data-v="${m.key}">—</span>` +
+        `<span class="row-value" data-v="${m.key}">-</span>` +
         `<svg viewBox="0 0 240 26" preserveAspectRatio="none">` +
           `<path data-fill="${m.key}" fill="${m.colour}" opacity=".15"></path>` +
           `<path data-line="${m.key}" fill="none" stroke="${m.colour}" stroke-width="1.4" stroke-linejoin="round"></path>` +
@@ -115,7 +115,7 @@
       const lo = Math.min(...arr);
       const hi = Math.max(...arr);
 
-      // Percentages are drawn against a true 0–100 axis; unbounded rates fit
+      // Percentages are drawn against a true 0-100 axis; unbounded rates fit
       // themselves. Same rule the application uses.
       const min = m.fixed ? 0 : lo;
       const span = (m.fixed ? 100 : hi - lo) || 1;
@@ -178,7 +178,7 @@
     }
   }
 
-  /* ── count-up on the hero facts ────────────────────────────────────────── */
+  /* -- count-up on the hero facts ------------------------------------------ */
 
   if (!reduceMotion && 'IntersectionObserver' in window) {
     const nums = document.querySelectorAll('.facts .num[data-count]');

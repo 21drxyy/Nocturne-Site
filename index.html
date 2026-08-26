@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nocturne — Windows performance monitor</title>
+<title>Nocturne - Windows performance monitor</title>
 <meta name="description" content="A lightweight open-source Windows performance monitor that tells you which program is using your hardware, not just how much of it is busy. No injection, no drivers, no telemetry.">
 
-<meta property="og:title" content="Nocturne — Windows performance monitor">
+<meta property="og:title" content="Nocturne - Windows performance monitor">
 <meta property="og:description" content="Tells you which program is using your hardware, not just how much of it is busy. One file, under a megabyte, no injection.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://getnocturne.site/">
@@ -40,7 +40,7 @@
 
 <main id="main">
 
-<!-- ─────────────────────────────────────────── hero ── -->
+<!-- ------------------------------------------- hero -- -->
 <section class="hero" id="top">
   <div class="wrap hero-grid">
 
@@ -52,7 +52,7 @@
       </h1>
       <p class="lede reveal">
         Every monitor can tell you the GPU is at 92%. Nocturne tells you your game
-        has 61% of it and the browser behind it took the rest — because Windows
+        has 61% of it and the browser behind it took the rest - because Windows
         reports usage per process, and almost nothing bothers to read it.
       </p>
 
@@ -106,13 +106,13 @@
         <span class="ov-sep">·</span>
         <span class="ov-v" data-ov="ram">48%</span><span class="ov-l">RAM</span>
       </div>
-      <p class="overlay-cap">The overlay, actual size — click-through, sits above fullscreen games.</p>
+      <p class="overlay-cap">The overlay, actual size - click-through, sits above fullscreen games.</p>
     </div>
 
   </div>
 </section>
 
-<!-- ────────────────────────────────────────── what ── -->
+<!-- ------------------------------------------ what -- -->
 <section class="band" id="what">
   <div class="wrap">
     <header class="sec-head reveal">
@@ -124,14 +124,14 @@
       <article class="card reveal">
         <h3><span class="swatch" style="--c:var(--cpu)"></span>Live metrics</h3>
         <p>Processor, graphics, memory, disk and network, sampled every second with
-           hand-drawn history graphs. Percentages are pinned to a real 0–100 scale
+           hand-drawn history graphs. Percentages are pinned to a real 0-100 scale
            rather than auto-fitted, so an idle machine looks idle instead of frantic.</p>
       </article>
 
       <article class="card reveal">
         <h3><span class="swatch" style="--c:var(--gpu)"></span>Per-process GPU</h3>
         <p>Windows publishes GPU utilization for every process. Nocturne keeps that
-           attribution and shows you which programs are actually holding the card —
+           attribution and shows you which programs are actually holding the card -
            the number Task Manager buries and most overlays discard entirely.</p>
       </article>
 
@@ -145,7 +145,7 @@
       <article class="card reveal">
         <h3><span class="swatch" style="--c:var(--mem)"></span>Plain-language answers</h3>
         <p>Rather than leaving you to interpret six graphs, Nocturne names the
-           constraint: CPU-bound, GPU-bound, disk saturated, or memory nearly full —
+           constraint: CPU-bound, GPU-bound, disk saturated, or memory nearly full -
            and which background programs are competing for it.</p>
       </article>
 
@@ -153,7 +153,7 @@
         <h3><span class="swatch" style="--c:var(--disk)"></span>Lives in the tray</h3>
         <p>Closing the window doesn't quit; it keeps sampling from the notification
            area. Window position, overlay placement and preferences survive a restart,
-           and are written a couple of seconds after they change — not only on exit.</p>
+           and are written a couple of seconds after they change - not only on exit.</p>
       </article>
 
       <article class="card reveal">
@@ -166,7 +166,7 @@
   </div>
 </section>
 
-<!-- ─────────────────────────────────── attribution ── -->
+<!-- ----------------------------------- attribution -- -->
 <section class="band alt" id="attribution">
   <div class="wrap split">
     <div class="split-copy reveal">
@@ -177,9 +177,9 @@
       <p>Windows exposes one performance counter instance per GPU engine <em>per
          process</em>. Nocturne reads all of them, groups them by engine type, and
          joins the result with per-process CPU and the window you're actually
-         looking at. That's the whole trick — the data was always there.</p>
-      <p class="fine">Processes you can't act on — the desktop compositor, the shell,
-         Nocturne itself — are filtered out. Advice you can't act on is worse than
+         looking at. That's the whole trick - the data was always there.</p>
+      <p class="fine">Processes you can't act on - the desktop compositor, the shell,
+         Nocturne itself - are filtered out. Advice you can't act on is worse than
          silence.</p>
     </div>
 
@@ -197,7 +197,7 @@
   </div>
 </section>
 
-<!-- ──────────────────────────────────────── limits ── -->
+<!-- ---------------------------------------- limits -- -->
 <section class="band" id="limits">
   <div class="wrap">
     <header class="sec-head reveal">
@@ -218,7 +218,7 @@
       <li class="reveal">
         <h3>No kernel driver</h3>
         <p>Every metric comes from a documented user-mode Windows API. That's also why CPU
-           temperature and fan speed aren't here — reading them needs a driver, and a
+           temperature and fan speed aren't here - reading them needs a driver, and a
            signed driver is a liability that a performance monitor shouldn't be asking you
            to accept.</p>
       </li>
@@ -238,7 +238,7 @@
       <li class="reveal">
         <h3>No elevation</h3>
         <p>Runs as a normal user. It never asks for administrator, and the one optional
-           setting that touches the registry — start with Windows — writes a single
+           setting that touches the registry - start with Windows - writes a single
            per-user value you can remove from Task Manager.</p>
       </li>
     </ul>
@@ -251,7 +251,7 @@
   </div>
 </section>
 
-<!-- ─────────────────────────────────────── sources ── -->
+<!-- --------------------------------------- sources -- -->
 <section class="band alt" id="sources">
   <div class="wrap">
     <header class="sec-head reveal">
@@ -263,7 +263,7 @@
       <table>
         <thead><tr><th>Metric</th><th>Source</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>CPU</td><td><code>GetSystemTimes</code></td><td>Idle, kernel and user tick deltas. Kernel time includes idle — a detail that trips up most implementations.</td></tr>
+          <tr><td>CPU</td><td><code>GetSystemTimes</code></td><td>Idle, kernel and user tick deltas. Kernel time includes idle - a detail that trips up most implementations.</td></tr>
           <tr><td>Memory</td><td><code>GlobalMemoryStatusEx</code></td><td>Computed from byte totals rather than the rounded percentage, so the graph moves smoothly.</td></tr>
           <tr><td>GPU</td><td><code>\GPU Engine(*)\Utilization Percentage</code></td><td>Works on AMD, Intel and NVIDIA alike. Summed per engine type; the busiest type is reported, matching Task Manager.</td></tr>
           <tr><td>Disk</td><td><code>\PhysicalDisk(_Total)\Disk Bytes/sec</code></td><td>Read through PDH directly rather than the managed wrapper, which is slow to initialise.</td></tr>
@@ -275,20 +275,20 @@
   </div>
 </section>
 
-<!-- ──────────────────────────────────────── verify ── -->
+<!-- ---------------------------------------- verify -- -->
 <section class="band" id="verify">
   <div class="wrap split">
     <div class="split-copy reveal">
       <p class="eyebrow">Provenance</p>
       <h2>Check the bytes yourself.</h2>
-      <p>Releases are built by GitHub Actions from a tagged commit — never uploaded from
+      <p>Releases are built by GitHub Actions from a tagged commit - never uploaded from
          a developer's machine. Each one publishes a SHA-256 next to the download and
          names the exact commit it came from.</p>
       <p>So you don't have to take anyone's word for it. Read the source, read the build
          log, hash the file you downloaded, and confirm they agree.</p>
       <p class="fine">Not yet code-signed, so Windows SmartScreen will warn about an
          unrecognised publisher. That happens to every new application until it builds
-         reputation, and it's a fair thing to be cautious about — which is exactly why
+         reputation, and it's a fair thing to be cautious about - which is exactly why
          the checksum is there.</p>
     </div>
 
@@ -299,7 +299,7 @@
 
 <span class="d">Algorithm  Hash</span>
 <span class="d">---------  ----</span>
-SHA256     <span class="h" id="hashDemo">E3CC89621893167E809E5B38CE759B79…</span>
+SHA256     <span class="h" id="hashDemo">E3CC89621893167E809E5B38CE759B79...</span>
 </code></pre>
       </div>
       <p class="fig-cap">Compare against the hash published with the release.</p>
@@ -307,7 +307,7 @@ SHA256     <span class="h" id="hashDemo">E3CC89621893167E809E5B38CE759B79…</sp
   </div>
 </section>
 
-<!-- ─────────────────────────────────────── install ── -->
+<!-- --------------------------------------- install -- -->
 <section class="band alt" id="install">
   <div class="wrap">
     <header class="sec-head reveal">
@@ -319,17 +319,17 @@ SHA256     <span class="h" id="hashDemo">E3CC89621893167E809E5B38CE759B79…</sp
         <h3>Install the runtime</h3>
         <p>Nocturne needs the <a href="https://dotnet.microsoft.com/download/dotnet/10.0">.NET&nbsp;10 Desktop Runtime</a>,
            a one-time install from Microsoft. Without it Windows shows a dialog with a
-           download link instead of starting the app — that's expected, not a broken download.</p>
+           download link instead of starting the app - that's expected, not a broken download.</p>
       </li>
       <li class="reveal">
         <h3>Download and run</h3>
-        <p>One <code>Nocturne.exe</code>. Put it anywhere — Desktop, a tools folder, a USB stick.
+        <p>One <code>Nocturne.exe</code>. Put it anywhere - Desktop, a tools folder, a USB stick.
            There's nothing to install and nothing to configure before it works.</p>
       </li>
       <li class="reveal">
         <h3>Get past SmartScreen</h3>
         <p>Until the project is code-signed you'll see an unrecognised-publisher warning.
-           Choose <em>More info → Run anyway</em>, ideally after checking the hash above.</p>
+           Choose <em>More info -> Run anyway</em>, ideally after checking the hash above.</p>
       </li>
       <li class="reveal">
         <h3>Find it in the tray</h3>
@@ -342,7 +342,7 @@ SHA256     <span class="h" id="hashDemo">E3CC89621893167E809E5B38CE759B79…</sp
       <h3>Overlay hotkeys</h3>
       <dl>
         <div><dt><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>N</kbd></dt><dd>Show or hide the overlay</dd></div>
-        <div><dt><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Space</kbd></dt><dd>Peek — brighten for two seconds</dd></div>
+        <div><dt><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Space</kbd></dt><dd>Peek - brighten for two seconds</dd></div>
         <div><dt><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>G</kbd></dt><dd>Hold and move the mouse to reposition it</dd></div>
       </dl>
       <p class="fine">Requires Windows 10 version 1607 or later, 64-bit.</p>
@@ -350,7 +350,7 @@ SHA256     <span class="h" id="hashDemo">E3CC89621893167E809E5B38CE759B79…</sp
   </div>
 </section>
 
-<!-- ────────────────────────────────────────── down ── -->
+<!-- ------------------------------------------ down -- -->
 <section class="closer" id="download">
   <div class="wrap closer-inner reveal">
     <h2>Under a megabyte. Nothing running behind your back.</h2>

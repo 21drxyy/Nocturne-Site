@@ -1,4 +1,4 @@
-/* ─────────────────────────────────────────────── tokens ──
+/* ----------------------------------------------- tokens --
    Carried over from the application itself rather than invented for the web, so
    the site and the thing it is selling read as one object.                      */
 
@@ -36,16 +36,16 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 88px;
-  /* Tells the browser to render native UI — form controls, and the Firefox
-     scrollbar — against a dark background rather than a light one. */
+  /* Tells the browser to render native UI - form controls, and the Firefox
+     scrollbar - against a dark background rather than a light one. */
   color-scheme: dark;
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-/* ─────────────────────────────────────────── scrollbars ──
+/* ------------------------------------------- scrollbars --
    The default light scrollbar sits badly against a dark page. Styled for both
    engines: Firefox takes the standard properties, everything else takes the
-   WebKit pseudo-elements. Applies to nested scrollers too — the data table and
+   WebKit pseudo-elements. Applies to nested scrollers too - the data table and
    the terminal block both scroll horizontally on narrow screens.               */
 
 html { scrollbar-width: thin; scrollbar-color: #2C3757 transparent; }
@@ -105,7 +105,7 @@ a:hover { text-decoration-color: var(--brass); }
 }
 .skip:focus { left: 0; }
 
-/* ───────────────────────────────────────────────── nav ── */
+/* ------------------------------------------------- nav -- */
 
 .nav {
   position: sticky; top: 0; z-index: 50;
@@ -137,7 +137,7 @@ a:hover { text-decoration-color: var(--brass); }
 
 @media (max-width: 940px) { .nav-links { display: none; } .nav-inner { gap: 16px; } }
 
-/* ─────────────────────────────────────────────── buttons ── */
+/* ----------------------------------------------- buttons -- */
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -161,7 +161,7 @@ a:hover { text-decoration-color: var(--brass); }
 
 @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
 
-/* ────────────────────────────────────────────────── hero ── */
+/* -------------------------------------------------- hero -- */
 
 .hero { padding: 74px 0 96px; }
 .hero-grid {
@@ -200,7 +200,7 @@ h1 { margin: 0 0 22px; font-weight: 400; line-height: 1.06; }
 .facts .unit { font-size: 12px; color: var(--ink-muted); }
 .facts .cap { font-size: 12px; color: var(--ink-faint); margin-left: 3px; }
 
-/* ─────────────────────────────────────────── hero demo ── */
+/* ------------------------------------------- hero demo -- */
 
 .hero-demo { position: relative; }
 
@@ -288,7 +288,7 @@ h1 { margin: 0 0 22px; font-weight: 400; line-height: 1.06; }
   .overlay-cap { margin-top: 10px; text-align: left; }
 }
 
-/* ───────────────────────────────────────────────── bands ── */
+/* ------------------------------------------------- bands -- */
 
 .band { padding: 96px 0; position: relative; }
 .band.alt { background: linear-gradient(180deg, transparent, rgba(18,24,40,.5) 12%, rgba(18,24,40,.5) 88%, transparent); }
@@ -301,7 +301,7 @@ h1 { margin: 0 0 22px; font-weight: 400; line-height: 1.06; }
 }
 .sec-head p { margin: 0; color: var(--ink-muted); font-size: 16px; }
 
-/* ───────────────────────────────────────────────── cards ── */
+/* ------------------------------------------------- cards -- */
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(298px, 1fr)); gap: 16px; }
 .card {
@@ -315,7 +315,7 @@ h1 { margin: 0 0 22px; font-weight: 400; line-height: 1.06; }
 .card p { margin: 0; font-size: 14px; color: var(--ink-muted); }
 .swatch { width: 8px; height: 8px; border-radius: 2px; background: var(--c); flex: none; }
 
-/* ───────────────────────────────────────────────── split ── */
+/* ------------------------------------------------- split -- */
 
 .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 60px; align-items: center; }
 @media (max-width: 940px) { .split { grid-template-columns: 1fr; gap: 40px; } }
@@ -346,7 +346,7 @@ h1 { margin: 0 0 22px; font-weight: 400; line-height: 1.06; }
 .split-fig figcaption, .fig-cap { margin-top: 12px; font-size: 12.5px; color: var(--ink-faint); }
 .split-fig { margin: 0; }
 
-/* ──────────────────────────────────────────────── limits ── */
+/* ------------------------------------------------ limits -- */
 
 .limits { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
 .limits li {
@@ -361,7 +361,7 @@ h1 { margin: 0 0 22px; font-weight: 400; line-height: 1.06; }
 
 .audit { margin: 34px 0 0; font-size: 14px; color: var(--ink-muted); }
 
-/* ───────────────────────────────────────────────── table ── */
+/* ------------------------------------------------- table -- */
 
 .table-wrap { overflow-x: auto; border: 1px solid var(--hairline); border-radius: var(--r); background: var(--panel); }
 table { width: 100%; border-collapse: collapse; min-width: 720px; }
@@ -374,7 +374,7 @@ tr:last-child td { border-bottom: none; }
 td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; }
 td code { font-family: var(--mono); font-size: 12.5px; color: var(--brass); }
 
-/* ────────────────────────────────────────────── terminal ── */
+/* ---------------------------------------------- terminal -- */
 
 .term { background: #070A12; border: 1px solid var(--hairline); border-radius: var(--r); overflow: hidden; }
 .term-bar { display: flex; align-items: center; gap: 6px; padding: 9px 13px; background: var(--panel); border-bottom: 1px solid var(--hairline); }
@@ -386,7 +386,7 @@ td code { font-family: var(--mono); font-size: 12.5px; color: var(--brass); }
 .term .d { color: var(--ink-faint); }
 .term .h { color: var(--brass); }
 
-/* ───────────────────────────────────────────────── steps ── */
+/* ------------------------------------------------- steps -- */
 
 .steps { list-style: none; counter-reset: s; margin: 0 0 44px; padding: 0; display: grid; gap: 2px; }
 .steps li {
@@ -418,7 +418,7 @@ kbd {
 }
 .keys .fine { margin: 18px 0 0; font-size: 12.5px; color: var(--ink-faint); }
 
-/* ──────────────────────────────────────────────── closer ── */
+/* ------------------------------------------------ closer -- */
 
 .closer { padding: 104px 0; border-top: 1px solid var(--hairline); position: relative; }
 .closer::before {
@@ -433,7 +433,7 @@ kbd {
 .closer .cta-row { justify-content: center; }
 .closer .fine { margin: 22px 0 0; font-size: 13px; color: var(--ink-faint); }
 
-/* ───────────────────────────────────────────────── footer ── */
+/* ------------------------------------------------- footer -- */
 
 .foot { border-top: 1px solid var(--hairline); padding: 34px 0 44px; position: relative; z-index: 1; }
 .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 26px; flex-wrap: wrap; }
@@ -445,7 +445,7 @@ kbd {
 .foot-links a:hover { color: var(--brass); }
 .signpath { margin: 22px 0 0; font-size: 12px; color: var(--ink-faint); }
 
-/* ────────────────────────────────────────────── reveals ── */
+/* ---------------------------------------------- reveals -- */
 
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
 .reveal.is-visible { opacity: 1; transform: none; }
